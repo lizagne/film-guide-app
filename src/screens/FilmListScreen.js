@@ -8,6 +8,17 @@ export default class FilmListScreen extends
     static navigationOptions = {
       title: 'Films on Freeview'
     };
+
+    constructor() {
+      super();
+
+      this.navigateToDetailScreen = this.navigateToDetailScreen.bind(this);
+    }
+
+    //add the navigate method
+    navigateToDetailScreen() {
+      this.props.navigation.navigate('Detail'); //we need to bind this to the value of this below
+    }
  
   render() {
     return (
