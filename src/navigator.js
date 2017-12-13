@@ -40,3 +40,5 @@ export default StackNavigator({
 });
 
 
+
+//Touchable Opacity changes the button slightly to show that it's been pressed but just changes it's actual color rather than the full background colour
