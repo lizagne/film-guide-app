@@ -27,7 +27,7 @@ export default StackNavigator({
 	//this object is for the global styles of the whole app:
 
 	cardStyle: { //this means the screen
-		backgroundColor: '#000',
+		backgroundColor: '#fff',
 	},
 
 	navigationOptions: {

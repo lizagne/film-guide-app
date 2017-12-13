@@ -1,5 +1,6 @@
 import React from 'react';
 import { FlatList, Text } from 'react-native';
+import FilmListItem from './FilmListItem';
 
 // If you need state in a component it has to be a class, also:
 // life cycle methods are ComponentDidMount etc - life cycle method, 
@@ -9,8 +10,14 @@ import { FlatList, Text } from 'react-native';
 //create a simple function //item refers to one object in the array made in films.json
 const renderFilmItem = ({ item }) => {
 	return (
-		<Text>{ item.name }</Text>
+		<FilmListItem item={ item }/>
 	);
+};
+
+const extractFilmItemKey = item => { //this is a simple item argument instead of a object that contains item
+
+	return item.id //this will know to use the ID for the key and can identify each object in this way.
+
 };
 
 
@@ -20,7 +27,9 @@ const FilmList = ({ films }) => {
 	return(
 	<FlatList 
 		data={ films }
-		renderItem={ renderFilmItem }/> //this depends on how many things you have 
+		renderItem={ renderFilmItem }
+		keyExtractor={ extractFilmItemKey }
+	/> //this depends on how many things you have 
 )};
 
 
