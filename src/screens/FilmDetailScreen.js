@@ -1,15 +1,29 @@
 //screens denote containers to hold the components
 
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 
-export default class FilmDetailScreen extends
-	Component {
+// const countImage = require('./count.jpg');
+
+export default class FilmDetailScreen extends Component {
+
+		static navigationOptions = ({ navigation }) => {
+				const name = navigation.state.params.name;
+
+			return {
+				title: name
+			};
+		 }; 
+
 		render() {
+
+			const description = this.props.navigation.state.params.description;	
+
 			return (
 
 				<View style={ styles.container }>
-					<Text>Welcome to the details screen</Text>
+					<Image />
+					<Text>{ description }</Text>
 				</View>	
 			);
 
@@ -24,8 +38,4 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center'
 	},
-
-
-
-
 })
