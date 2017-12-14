@@ -1,7 +1,10 @@
-//screens denote containers to hold the components
+//screens denote containers to hold the components,
+
+//logic, navigation, delegating presentation 
 
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
+import FilmDetail from '../components/FilmDetail';
 
 // const countImage = require('./count.jpg');
 
@@ -15,12 +18,14 @@ export default class FilmDetailScreen extends Component {
 		 }; 
 
 		render() {
+			const film = this.props.navigation.state.params;
+			// const description = this.props.navigation.state.params.description;	
 
-			const description = this.props.navigation.state.params.description;	
+			//prop name needs to be the same as what you set up in the 
 			return (
 				<View style={ styles.container }>
-					<Image />
-					<Text>{ description }</Text>
+					<FilmDetail 
+						item={ film }/> 
 				</View>	
 			);
 

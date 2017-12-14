@@ -4,33 +4,42 @@
 
 //set up an actionCreator, always has a type whcih is always a string, and a payload
 //they are just functions which accept an object.
+import { getAllFilms } from "../data/api";
+
 
 const types = {
-	FETCH_FILM: '[Films] Fetch',//this has to be uniqe and has to be a string.
-	FETCH_FILM_SUCCESS: '[Films] Fetch Success'
+	// FETCH_FILM: '[Films] Fetch', no longer using this
+	FETCH_FILM_SUCCESS: '[Films] Fetch Success'//this has to be uniqe and has to be a string.
 };
 
 //create an actionCreators object
 const actionCreators = {
-	fetchFilms: () => {
-		return (dispatch) => {
-			const promise = getAllFilms();
-			promise.then((data) => {
-				//we have our films data
-				//therefore we want to Dispatch our FETCH_FILMS_SUCCESS action
-				//this is where the thunk middleware kicks in, provides us with a dispatch argument
-				dispatch(actionCreators.fetchFilmsSuccess(data));
-			});
-		};	
-	},
-
 	fetchFilmsSuccess: (data) => {
 		return {
-			types: types.FETCH_FILM_SUCCESS,
+			type: types.FETCH_FILM_SUCCESS,
 			payload: data
 		}
 	}
 };
+
+
+const fetchFilms = () => {
+	return (dispatch) => { //this is the thunk middleware, the thunk will call and getall films which is set up in the api data page.
+		const promise = getAllFilms();
+		promise.then((response) => {
+			// debugger;
+			//we have our films data
+			//therefore we want to Dispatch our FETCH_FILMS_SUCCESS action
+			//this is where the thunk middleware kicks in, provides us with a dispatch argument
+			dispatch(actionCreators.fetchFilmsSuccess(response.data));
+		});
+
+		promise.catch((error) => {
+			console.log(error);
+		});
+	};	
+}
+
 
 const initialState = {
 	collection: [] //set to an empty array
@@ -57,7 +66,8 @@ export default reducer;
 //this is called a barrelled export
 export {
 	getFilmsSelector,
-	actionCreators
+	actionCreators,
+	fetchFilms
 };
 
 //selectors: if nothing has changed I'm going to return the same result
@@ -67,3 +77,4 @@ export {
 
 //thunks is the way of setting asynchronous functions
 //thunks controls when and how it will set the data in the store etc.
+//sagas is an alternative, listening out for an action

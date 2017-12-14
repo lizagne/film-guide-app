@@ -10,7 +10,7 @@ import FilmList from '../components/FilmList';
 import films from '../data/films.json'; //this is the local version of the api, instead we want to fetch from a server
 import { connect } from 'react-redux'; //importing the connect function from redux
 
-import { getFilmsSelector, actionCreators } from '../store/films';
+import { getFilmsSelector, fetchFilms, actionCreators } from '../store/films';
 
 //mapStateToProps accepts state as the only argument
 const mapStateToProps = (state) => {
@@ -22,7 +22,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps =  dispatch => {
   return {
-    fetchFilms: () => dispatch(actionCreators.fetchFilms()) //this is a prop
+    fetchFilms: () => dispatch(fetchFilms()) //this is a prop
   };
 }
 
