@@ -1,6 +1,7 @@
 import React from 'react';
-import { FlatList, Text, FilmListSeparator } from 'react-native';
+import { FlatList, Text } from 'react-native';
 import FilmListItem from './FilmListItem';
+import FilmListSeparator from './FilmListSeparator';
 
 // If you need state in a component it has to be a class, also:
 // life cycle methods are ComponentDidMount etc - life cycle method, 

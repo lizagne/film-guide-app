@@ -2,29 +2,25 @@
 
 //this is a custom component 
 
+//put debugger anywhere in the code and in Google dev tools it'll stop in that place - handy!
+
 
 import React from 'react';
-import { Text, View, StyleSheet, TouchableHighlight } from 'react-native';
-import Icon from '@expo/vector-icons/Ionicons'
+import { Text, View, StyleSheet, TouchableHighlight, Platform } from 'react-native';
+import Icon from '@expo/vector-icons/Ionicons';
 import moment from 'moment';
 
-
+const isIOS = (Platform.OS === 'ios');
 
 const FilmListItem = ({ item, onFilmSelected }) => {
-
 	// const dateAndTime = { item
 	const filmRating = item.tmdbRating; //setting a constant for the rating
 	const nextShowTime = item.showtimes[0]; //setting a constant for the showTime
 	const newDate = moment(item.showtimes[0].startsAtDate, "YYYY-MM-DD").calendar();
-	const chevron = '>';
 
 	return(
-		
-
 		<TouchableHighlight onPress={ onFilmSelected } underlayColor="#ddd" >
-
 			<View style={ styles.container } >
-
 				<View style={ styles.filmInfo }>
 					<Text style={ styles.text } numberOfLines={ 1 } ellipsizeMode={ 'middle' }>{ item.name }</Text> 
 					<Text style={ styles.showtime } numberOfLines={ 1 }>{ newDate 
@@ -39,7 +35,10 @@ const FilmListItem = ({ item, onFilmSelected }) => {
 					</View>
 				) : null }
 
-				<Text style={ styles.chevron }><Icon name={ 'ios-arrow-forward' } /></Text>
+				{ isIOS ? ( //this is adding in the javascript so we can use a ternary statement to ask whether it's ios.
+				<Text style={ styles.chevron }>
+				<Icon name={ 'ios-arrow-forward' } /></Text>
+				 ) : null }
 
 			</View>
 
@@ -56,8 +55,8 @@ const styles = StyleSheet.create({
 		padding: 12,
 		flexDirection: 'row',
 		alignItems: 'center',
-		borderBottomWidth: 1,
-		borderBottomColor: '#999',
+		// borderBottomWidth: 1,
+		// borderBottomColor: '#999',
 	},
 
   	text: {
