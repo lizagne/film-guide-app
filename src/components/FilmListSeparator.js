@@ -4,11 +4,7 @@ import { View, StyleSheet } from 'react-native';
 const FilmListSeparator = () => {
 	
 	return(
-
-		<View style={ styles.container }>
-
-		</View>
-
+		<View style={ styles.container }></View>
 )};
 
 
@@ -18,7 +14,7 @@ const styles = StyleSheet.create({
 
 	container: {
 		borderBottomWidth: 1,
-		borderBottomColor: '#f2f2f2',
+		borderBottomColor: '#999',
 		marginLeft: 12,
 		marginRight: 12
 	}	

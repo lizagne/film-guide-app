@@ -3,6 +3,7 @@ import FilmDetailScreen from './screens/FilmDetailScreen';
 import { Constants } from 'expo';
 import { Platform, StatusBar } from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import Icon from '@expo/vector-icons/Ionicons';
 
 const isAndroid = (Platform.OS === 'android'); //this is saying if the Operating system is android then choose the settings below.
 

@@ -10,13 +10,11 @@ const FilmDetail = ({ item }) => {
 	const filmTitle = item.name; //don't need this as the title comes in on the header anyway
 	const filmRating = item.tmdbRating;
 	const filmReleaseDate = item.year;
-	const newDate = moment(item.showtimes[0].startsAtDate, "YYYY-MM-DD").calendar();
+	// const newDate = moment(item.showtimes[0].startsAtDate, "YYYY-MM-DD").calendar();
+	const newDate = item.showtimes[0].startsAtDate;
 	const image = { uri: 'https://image.tmdb.org/t/p/original/' + item.tmdbImageId + '.jpg'}
 
-	// const noImage = require('');
-
 	return(
-		
 		<View style={ styles.container }>
 			
 			<ScrollView>
@@ -34,16 +32,13 @@ const FilmDetail = ({ item }) => {
 
 							{ item.year !== null ? ( 
 								<Text style={ styles.headerText }>{ 'Released in ' + filmReleaseDate }</Text>
-								) : <Text style={ styles.headerText }>{ 'Released in ?'}</Text>
-							}
+								) : <Text style={ styles.headerText }>{ 'Released in ?'}</Text>}
 
-							<View style={ styles.showTimeContainer }>
-								<Text style={ styles.showTimeText }> { 'Showtimes:' } </Text>
-
+							<View>
+								<Text style={ styles.showTimeText }>{ 'Showtimes:' }</Text>
 								{ item.showtimes.map((item, index) => {
-									return <Text key={ index }>{ item.startsAtDate} at {item.startsAtTime}</Text>
+									return <Text key={ index }>{ newDate + ' at ' + item.startsAtTime }</Text>
 								})}
-
 							</View>
 
 						</View>	
@@ -78,18 +73,13 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 
-	// showTimeContainer: {
-
-	// },
-
 	space: {
 		marginTop: 20,
 		marginBottom: 20
 	},
 
 	image: {
-		aspectRatio: 0.75, //this is going to sort out the height and the width together
-		width: '100%'
+		aspectRatio: 0.85, //this is going to sort out the height and the width together
 	},
 
 	synopsis: {
@@ -111,10 +101,6 @@ const styles = StyleSheet.create({
 		fontSize: 14,
 	},
 
-	info: {
-		marginRight: 40,
-	},
-
 	showTimeText: {
 		fontSize: 14,
 		fontWeight: 'bold',
@@ -125,10 +111,5 @@ const styles = StyleSheet.create({
 		fontSize: 14,
 		fontWeight: 'bold'
 	}
-
-	// firstLine: {
-	// 	flexDirection: 'column',
-	// 	marginLeft: 50
-	// },
 
 });	

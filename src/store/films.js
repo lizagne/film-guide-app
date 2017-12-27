@@ -6,7 +6,6 @@
 //they are just functions which accept an object.
 import { getAllFilms } from "../data/api";
 
-
 const types = {
 	// FETCH_FILM: '[Films] Fetch', no longer using this
 	FETCH_FILM_SUCCESS: '[Films] Fetch Success'//this has to be uniqe and has to be a string.
@@ -21,7 +20,6 @@ const actionCreators = {
 		}
 	}
 };
-
 
 const fetchFilms = () => {
 	return (dispatch) => { //this is the thunk middleware, the thunk will call and getall films which is set up in the api data page.
@@ -40,11 +38,9 @@ const fetchFilms = () => {
 	};	
 }
 
-
 const initialState = {
 	collection: [] //set to an empty array
 };
-
 
 const reducer = (state = initialState, action) => {
 	if(action.type === types.FETCH_FILM_SUCCESS) {

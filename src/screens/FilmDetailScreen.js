@@ -28,7 +28,6 @@ export default class FilmDetailScreen extends Component {
 						item={ film }/> 
 				</View>	
 			);
-
 		}
 	}
 
